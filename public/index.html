@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>💪 Personal Trainer</h1>
+    <nav>
+      <button class="tab-btn active" data-tab="exercises">Exercises</button>
+      <button class="tab-btn" data-tab="plans">Exercise Plans</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ── Exercises Tab ── -->
+    <section id="tab-exercises" class="tab active">
+      <div class="section-header">
+        <h2>Exercises</h2>
+        <button class="btn btn-primary" id="btn-new-exercise">+ New Exercise</button>
+      </div>
+
+      <!-- Exercise Form -->
+      <div id="exercise-form-container" class="card form-card hidden">
+        <h3 id="exercise-form-title">New Exercise</h3>
+        <form id="exercise-form">
+          <input type="hidden" id="exercise-id" />
+          <div class="form-row">
+            <label>Name *</label>
+            <input type="text" id="exercise-name" required placeholder="e.g. Push-up" />
+          </div>
+          <div class="form-row">
+            <label>Description</label>
+            <textarea id="exercise-desc" rows="2" placeholder="Optional description"></textarea>
+          </div>
+          <div class="form-row">
+            <label>Muscle Group</label>
+            <input type="text" id="exercise-muscle" placeholder="e.g. Chest" />
+          </div>
+          <div class="form-row three-col">
+            <div>
+              <label>Sets</label>
+              <input type="number" id="exercise-sets" min="0" value="0" />
+            </div>
+            <div>
+              <label>Reps</label>
+              <input type="number" id="exercise-reps" min="0" value="0" />
+            </div>
+            <div>
+              <label>Duration (sec)</label>
+              <input type="number" id="exercise-duration" min="0" value="0" />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" id="btn-cancel-exercise">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Exercise List -->
+      <div id="exercise-list" class="card-grid"></div>
+    </section>
+
+    <!-- ── Plans Tab ── -->
+    <section id="tab-plans" class="tab hidden">
+      <div class="section-header">
+        <h2>Exercise Plans</h2>
+        <button class="btn btn-primary" id="btn-new-plan">+ New Plan</button>
+      </div>
+
+      <!-- Plan Form -->
+      <div id="plan-form-container" class="card form-card hidden">
+        <h3 id="plan-form-title">New Plan</h3>
+        <form id="plan-form">
+          <input type="hidden" id="plan-id" />
+          <div class="form-row">
+            <label>Name *</label>
+            <input type="text" id="plan-name" required placeholder="e.g. Full Body Beginner" />
+          </div>
+          <div class="form-row">
+            <label>Description</label>
+            <textarea id="plan-desc" rows="2" placeholder="Optional description"></textarea>
+          </div>
+          <div class="form-row">
+            <label>Difficulty</label>
+            <select id="plan-difficulty">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" id="btn-cancel-plan">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Plan List -->
+      <div id="plan-list" class="card-grid"></div>
+
+      <!-- Plan Detail Modal -->
+      <div id="plan-modal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 id="modal-plan-name"></h3>
+            <button class="btn-icon" id="btn-close-modal">&#x2715;</button>
+          </div>
+          <p id="modal-plan-desc" class="muted"></p>
+          <span id="modal-plan-difficulty" class="badge"></span>
+
+          <h4>Exercises in this plan</h4>
+          <div id="modal-exercise-list"></div>
+
+          <div class="form-row" style="margin-top:1rem">
+            <label>Add Exercise</label>
+            <div class="inline-row">
+              <select id="modal-exercise-select"></select>
+              <input type="number" id="modal-sets" min="0" value="3" placeholder="Sets" style="width:70px" />
+              <input type="number" id="modal-reps" min="0" value="10" placeholder="Reps" style="width:70px" />
+              <button class="btn btn-primary" id="btn-add-exercise-to-plan">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
